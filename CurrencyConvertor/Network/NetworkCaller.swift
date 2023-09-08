@@ -39,7 +39,7 @@ class NetworkCaller {
 
 // MARK: - private functions
 extension NetworkCaller {
-    /// used for except POST reqeust
+    /// used for except POST request
     private func upload<T>(
         withEndPoint endPoint: EndpointProtocol,
         returnType: T.Type
@@ -63,7 +63,7 @@ extension NetworkCaller {
 
     }
 
-    /// parses data if succes else throws error
+    /// parses data if success else throws error
     private func handle<T>(
         data: Data,
         response: URLResponse,

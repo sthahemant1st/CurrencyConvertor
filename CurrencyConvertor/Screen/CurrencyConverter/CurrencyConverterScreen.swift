@@ -21,7 +21,6 @@ struct CurrencyConverterScreen: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text("Enter amount to convert:")
                     .font(.callout)
-                
                 TextField("Amount", text: $viewModel.amount)
                     .textFieldStyle(.roundedBorder)
             }
@@ -37,7 +36,7 @@ struct CurrencyConverterScreen: View {
                     .monospaced()
                 }
             }
-
+            
         }
         .padding(16.0)
         .navigationTitle("Currency Converter")
