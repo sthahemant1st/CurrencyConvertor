@@ -18,7 +18,7 @@ class CurrencyConverterViewModel: BaseViewModel {
     @Published var calculatedRates: [CalculatedRate] = []
     
     init(
-        rateService: RateService = RateServiceNetwork.shared
+        rateService: RateService = RateServiceApp()
     ) {
         self.rateService = rateService
         selectedCurrency = "USD" // selectedCurrency can be saved in UserDefaults
@@ -48,14 +48,3 @@ class CurrencyConverterViewModel: BaseViewModel {
         .sorted()
     }
 }
-
-extension String {
-    var doubleValue: Double { Double(self) ?? 0 }
-}
-
-@MainActor
-class BaseViewModel: ObservableObject {
-    @Published var isRefreshing: Bool = false
-    @Published var error: Error?
-}
-// TODO: add swiftLint
