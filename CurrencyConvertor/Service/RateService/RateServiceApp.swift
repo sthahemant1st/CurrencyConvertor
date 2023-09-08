@@ -9,6 +9,10 @@ import Foundation
 
 struct RateServiceLocal: RateService {
     func getLatestRate() async throws -> RateResponse {
-        throw APIError.notFound(nil)
+        let response = PersistenceHelper.getRateResponse()
+        
+        guard let response else {
+            throw 
+        }
     }
 }
