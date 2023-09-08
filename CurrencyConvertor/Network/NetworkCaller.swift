@@ -32,7 +32,7 @@ class NetworkCaller {
             let (data, response) = try await session.data(for: endPoint.request)
             return try await handle(data: data, response: response, returnType: returnType)
         } catch {
-            throw APIError.transportError(error)
+            throw APIError.transportError
         }
     }
 }
@@ -50,15 +50,15 @@ extension NetworkCaller {
         }
         do {
             let jsonEncoder = JSONEncoder()
-            let reqeustData = try jsonEncoder.encode(body)
-            NetworkLogHelper.log(request: endPoint.request, body: reqeustData)
-            let (data, response) = try await session.upload(for: endPoint.request, from: reqeustData)
+            let requestData = try jsonEncoder.encode(body)
+            NetworkLogHelper.log(request: endPoint.request, body: requestData)
+            let (data, response) = try await session.upload(for: endPoint.request, from: requestData)
 
             return try await handle(data: data, response: response, returnType: returnType)
         } catch EncodingError.invalidValue(_, let context) {
             throw APIError.encodingError(context.underlyingError)
         } catch {
-            throw APIError.transportError(error)
+            throw APIError.transportError
         }
 
     }

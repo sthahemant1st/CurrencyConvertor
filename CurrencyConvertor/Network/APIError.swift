@@ -13,7 +13,7 @@ enum APIError: LocalizedError {
     case invalidRequest(String)
     case internalServerError
     case notFound(String?) // bad request
-    case transportError(Error) // noInternet
+    case transportError // noInternet
     case unauthorized
     case sessionExpired
     case unknown
@@ -31,8 +31,8 @@ enum APIError: LocalizedError {
             return "Internal Server Error"
         case .notFound(let message):
             return message
-        case .transportError(let error):
-            return "Transport Error \(error.localizedDescription)"
+        case .transportError:
+            return "No internet connection"
         case .unauthorized:
             return "Not Authorized"
         case .sessionExpired:
