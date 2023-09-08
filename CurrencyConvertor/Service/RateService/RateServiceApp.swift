@@ -25,7 +25,7 @@ struct RateServiceApp: RateService {
             let fetchedDate = Date(timeIntervalSince1970: savedRateResponse.timestamp)
             let timeInterval = fetchedDate.timeIntervalSinceNow
             print("timeInterval: \(timeInterval)")
-            if timeInterval.intValue < AppConstant.rateFetchInterval {
+            if timeInterval.intValue.absoluteValue < AppConstant.rateFetchInterval {
                 return savedRateResponse
             }
         }
@@ -39,4 +39,8 @@ struct RateServiceApp: RateService {
         return response
     }
     
+}
+
+extension SignedNumeric where Self: Comparable {
+    var absoluteValue: Self { abs(self) }
 }
