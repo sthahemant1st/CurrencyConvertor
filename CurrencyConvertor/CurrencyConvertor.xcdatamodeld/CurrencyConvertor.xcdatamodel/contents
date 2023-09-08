@@ -1,2 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22213.2" systemVersion="22G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier=""/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22213.2" systemVersion="22G90" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="RateResponseCD" representedClassName="RateResponseCD" syncable="YES">
+        <attribute name="base" attributeType="String"/>
+        <attribute name="disclaimer" attributeType="String"/>
+        <attribute name="license" attributeType="String"/>
+        <attribute name="rates" attributeType="Transformable"/>
+        <attribute name="timestamp" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="timestamp"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+</model>

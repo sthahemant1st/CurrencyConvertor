@@ -47,6 +47,7 @@ struct ErrorRetryView: View {
                 .tint(.appPrimary)
             
         }
+        .frame(maxWidth: .infinity)
         .padding(.all, 16)
     }
 }

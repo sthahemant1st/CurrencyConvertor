@@ -35,6 +35,7 @@ class CurrencyConverterViewModel: BaseViewModel {
         } catch {
             self.error = error
         }
+        isRefreshing = false
     }
     
     // should be called in amount change, selectedCountry change and rateFetch

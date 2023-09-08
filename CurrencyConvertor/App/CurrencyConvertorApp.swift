@@ -14,6 +14,11 @@ struct CurrencyConvertorApp: App {
             NavigationStack {
                 CurrencyConverterScreen(viewModel: .init())
             }
+            .onAppear(perform: onAppStart)
         }
+    }
+    
+    private func onAppStart() {
+        _ = NetworkReachableMonitor.shared
     }
 }
