@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+@MainActor
+class BaseViewModel: ObservableObject {
+    @Published var isRefreshing: Bool = false
+    @Published var error: Error?
+}
