@@ -10,7 +10,7 @@ import Foundation
 struct RateResponse: Codable {
     let disclaimer: String
     let license: String
-    let timestamp: Int
+    var timestamp: Double
     let base: String
     let rates: [String: Double]
 }
