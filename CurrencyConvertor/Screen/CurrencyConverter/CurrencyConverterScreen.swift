@@ -14,32 +14,26 @@ struct CurrencyConverterScreen: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    // TODO: add baseView
     var body: some View {
         ZStack {
-            VStack(alignment: .leading) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Enter amount to convert:")
-                        .font(.callout)
-                    TextField("Amount", text: $viewModel.amount)
-                        .textFieldStyle(.roundedBorder)
-                }
-                // add Currency Picker
-                // last fetched text using rateResponse.timestamp
-                ScrollView {
-                    ForEach(viewModel.calculatedRates) { item in
-                        HStack {
-                            Text(item.county + " ")
-                            Text(item.amount.roundedString())
-                            Spacer()
-                        }
-                        .monospaced()
-                    }
-                    
+            VStack(alignment: .leading, spacing: 16) {
+                amountField
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                
+                countryPicker
+                    .padding(.horizontal, 16)
+                
+                if let amountErrorMsg = viewModel.amountErrorMsg {
+                    Text(amountErrorMsg)
+                        .foregroundStyle(.red)
+                        .padding(.horizontal, 16)
+                } else {
+                    calculatedRatesView
                 }
                 
+                Spacer()
             }
-            .padding(16.0)
             
             refreshingView
             
@@ -58,8 +52,46 @@ struct CurrencyConverterScreen: View {
         }
     }
 }
+
 // MARK: subViews
 private extension CurrencyConverterScreen {
+    var amountField: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Enter amount to convert:")
+                .font(.callout)
+            TextField("Amount", text: $viewModel.amount)
+                .textFieldStyle(.roundedBorder)
+        }
+    }
+    
+    var countryPicker: some View {
+        Picker(
+            "Select Currency",
+            selection: $viewModel.selectedCurrency
+        ) {
+            ForEach(viewModel.rates.keys.sorted(), id: \.self) { currency in
+                Text(currency)
+            }
+        }
+        .pickerStyle(.navigationLink)
+    }
+    
+    var calculatedRatesView: some View {
+        ScrollView {
+            LazyVStack(spacing: 8) {
+                ForEach(viewModel.calculatedRates) { item in
+                    HStack {
+                        Text(item.county + " ")
+                        Text(item.amount.roundedString())
+                        Spacer()
+                    }
+                    .monospaced()
+                    Divider()
+                }
+            }
+            .padding(.horizontal, 16)
+        }
+    }
     
     @ViewBuilder
     var refreshingView: some View {
