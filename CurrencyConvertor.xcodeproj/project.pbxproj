@@ -11,8 +11,9 @@
 		4153F83A2AA8E419002764A4 /* ConfigProd.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4153F8382AA8E419002764A4 /* ConfigProd.xcconfig */; };
 		4153F83B2AA8E419002764A4 /* ConfigDebug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4153F8392AA8E419002764A4 /* ConfigDebug.xcconfig */; };
 		4153F83E2AA8E56F002764A4 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4153F83D2AA8E56F002764A4 /* AppConfig.swift */; };
+		4153F8402AA8E6B8002764A4 /* CurrencyConverterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4153F83F2AA8E6B8002764A4 /* CurrencyConverterScreen.swift */; };
+		4153F8422AA8E708002764A4 /* CurrencyConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4153F8412AA8E708002764A4 /* CurrencyConverterViewModel.swift */; };
 		41AC05A62AA8D68400BA6C8A /* CurrencyConvertorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC05A52AA8D68400BA6C8A /* CurrencyConvertorApp.swift */; };
-		41AC05A82AA8D68400BA6C8A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC05A72AA8D68400BA6C8A /* ContentView.swift */; };
 		41AC05AA2AA8D68700BA6C8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41AC05A92AA8D68700BA6C8A /* Assets.xcassets */; };
 		41AC05AD2AA8D68700BA6C8A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41AC05AC2AA8D68700BA6C8A /* Preview Assets.xcassets */; };
 		41AC05B72AA8D68700BA6C8A /* CurrencyConvertorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC05B62AA8D68700BA6C8A /* CurrencyConvertorTests.swift */; };
@@ -53,9 +54,10 @@
 		4153F8392AA8E419002764A4 /* ConfigDebug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ConfigDebug.xcconfig; sourceTree = "<group>"; };
 		4153F83C2AA8E4E9002764A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4153F83D2AA8E56F002764A4 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		4153F83F2AA8E6B8002764A4 /* CurrencyConverterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterScreen.swift; sourceTree = "<group>"; };
+		4153F8412AA8E708002764A4 /* CurrencyConverterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewModel.swift; sourceTree = "<group>"; };
 		41AC05A22AA8D68400BA6C8A /* CurrencyConvertor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConvertor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41AC05A52AA8D68400BA6C8A /* CurrencyConvertorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConvertorApp.swift; sourceTree = "<group>"; };
-		41AC05A72AA8D68400BA6C8A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		41AC05A92AA8D68700BA6C8A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41AC05AC2AA8D68700BA6C8A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		41AC05B22AA8D68700BA6C8A /* CurrencyConvertorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConvertorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,7 +177,8 @@
 		41AC05D02AA8D73400BA6C8A /* Screen */ = {
 			isa = PBXGroup;
 			children = (
-				41AC05A72AA8D68400BA6C8A /* ContentView.swift */,
+				4153F83F2AA8E6B8002764A4 /* CurrencyConverterScreen.swift */,
+				4153F8412AA8E708002764A4 /* CurrencyConverterViewModel.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -360,7 +363,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41AC05A82AA8D68400BA6C8A /* ContentView.swift in Sources */,
 				41AC05EB2AA8E14900BA6C8A /* NetworkLogHelper.swift in Sources */,
 				41AC05E62AA8E0CA00BA6C8A /* Optional+Extension.swift in Sources */,
 				41AC05A62AA8D68400BA6C8A /* CurrencyConvertorApp.swift in Sources */,
@@ -369,6 +371,8 @@
 				41AC05E72AA8E0CA00BA6C8A /* Encodable+Extension.swift in Sources */,
 				41AC05DC2AA8DFCA00BA6C8A /* EndpointProtocol.swift in Sources */,
 				41AC05E82AA8E0CA00BA6C8A /* Data+Extension.swift in Sources */,
+				4153F8422AA8E708002764A4 /* CurrencyConverterViewModel.swift in Sources */,
+				4153F8402AA8E6B8002764A4 /* CurrencyConverterScreen.swift in Sources */,
 				41AC05E92AA8E0CA00BA6C8A /* JSONHelper.swift in Sources */,
 				4153F83E2AA8E56F002764A4 /* AppConfig.swift in Sources */,
 				41AC05DA2AA8DFCA00BA6C8A /* APIError.swift in Sources */,
