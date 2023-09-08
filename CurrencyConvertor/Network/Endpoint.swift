@@ -12,7 +12,7 @@ protocol EndpointProtocol {
     var httpMethod: HTTPMethod { get set }
     var headers: HTTPHeaders? { get set }
     var body: Encodable? { get set }
-    var queryItems: [URLQueryItem]? { get set }
+    var queryItems: [URLQueryItem] { get set }
 }
 
 struct Endpoint: EndpointProtocol {
@@ -20,14 +20,14 @@ struct Endpoint: EndpointProtocol {
     var httpMethod: HTTPMethod
     var headers: HTTPHeaders?
     var body: Encodable?
-    var queryItems: [URLQueryItem]?
+    var queryItems: [URLQueryItem]
 
     init(
         path: String,
         httpMethod: HTTPMethod,
         headers: HTTPHeaders? = nil,
         body: Encodable? = nil,
-        queryItems: [URLQueryItem]? = nil
+        queryItems: [URLQueryItem] = []
     ) {
         self.path = path
         self.httpMethod = httpMethod
@@ -38,16 +38,6 @@ struct Endpoint: EndpointProtocol {
 }
 
 extension EndpointProtocol {
-
-    var urlComponents: URLComponents {
-        var component = URLComponents()
-        component.scheme = "https"
-        component.host = AppConfig.baseURL
-        component.path = path
-        component.percentEncodedQueryItems = queryItems
-        return component
-    }
-
     var request: URLRequest {
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = httpMethod.rawValue
@@ -57,9 +47,22 @@ extension EndpointProtocol {
                 request.setValue(headerValue, forHTTPHeaderField: headerField)
             }
         }
+        
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: HeaderKeys.contentType.rawValue)
 
         return request
+    }
+    
+    private var urlComponents: URLComponents {
+        var component = URLComponents()
+        component.scheme = "https"
+        component.host = AppConfig.baseURL
+        component.path = path
+        var appIDIncludedQueryItem = queryItems
+        appIDIncludedQueryItem.append(URLQueryItem(name: "app_id", value: AppConfig.appID))
+        // TODO: Authorization: Token YOUR_APP_ID
+        component.percentEncodedQueryItems = appIDIncludedQueryItem
+        return component
     }
 }
 

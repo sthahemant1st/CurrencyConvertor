@@ -11,7 +11,9 @@ import SwiftUI
 struct CurrencyConvertorApp: App {
     var body: some Scene {
         WindowGroup {
-            CurrencyConverterScreen(viewModel: .init())
+            NavigationStack {
+                CurrencyConverterScreen(viewModel: .init())
+            }
         }
     }
 }

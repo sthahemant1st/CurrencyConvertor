@@ -8,14 +8,11 @@
 import Foundation
 
 struct JSONHelper {
-    static func convert<T: Decodable>(name: String, type: T.Type) -> T? {
+    static func convert<T: Decodable>(name: String, type: T.Type) throws -> T {
         let url = Bundle.main.url(forResource: name, withExtension: "json")!
-        let data = try? Data(contentsOf: url)
-        guard let data else {
-            return nil
-        }
+        let data = try Data(contentsOf: url)
         let decoder = JSONDecoder()
-        let products = try? decoder.decode(T.self, from: data)
+        let products = try decoder.decode(T.self, from: data)
         return products
     }
 }
