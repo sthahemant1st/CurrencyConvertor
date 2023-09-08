@@ -7,12 +7,36 @@
 
 import Foundation
 
-struct RateServiceLocal: RateService {
+struct RateServiceApp: RateService {
     func getLatestRate() async throws -> RateResponse {
-        let response = PersistenceHelper.getRateResponse()
+        let savedRateResponse = PersistenceHelper.getRateResponse()
         
-        guard let response else {
-            throw 
+        // check if there is internet
+        guard NetworkReachableMonitor.shared.isReachable else {
+            if let savedRateResponse {
+                return savedRateResponse
+            } else {
+                throw APIError.transportError
+            }
         }
+        
+        // check if savedRateResponse exceeds fetch interval
+        if let savedRateResponse {
+            let fetchedDate = Date(timeIntervalSince1970: savedRateResponse.timestamp)
+            let timeInterval = fetchedDate.timeIntervalSinceNow
+            print("timeInterval: \(timeInterval)")
+            if timeInterval.intValue < AppConstant.rateFetchInterval {
+                return savedRateResponse
+            }
+        }
+        
+        var response = try await RateServiceNetwork.shared.getLatestRate()
+        
+        // persist with timeStamp according to device
+        response.timestamp = Date().timeIntervalSince1970
+        try? PersistenceHelper.saveRateResponse(response)
+        
+        return response
     }
+    
 }
