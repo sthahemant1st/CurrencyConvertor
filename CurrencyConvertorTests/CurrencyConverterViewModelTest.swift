@@ -98,6 +98,13 @@ final class CurrencyConverterViewModelTest: XCTestCase {
         XCTAssertEqual(viewModel.calculatedRates, viewModel.calculatedRates.sorted())
     }
     
+    func test_getRates_onSuccessButEmptyRate_shouldThrowError() async {
+        viewModel = CurrencyConverterViewModel(rateService: RateServiceMockEmptyRate())
+        _ = await viewModel.getRates()
+        
+        XCTAssertNotNil(viewModel.error)
+    }
+    
     func test_getRates_onFailure_errorShouldBeUpdated() async {
         viewModel = CurrencyConverterViewModel(rateService: RateServiceMockFailure())
         _ = await viewModel.getRates()
@@ -172,18 +179,17 @@ class RateServiceMock: RateService {
     }
 }
 
-class RateServiceMockFailure: RateService {
+class RateServiceMockEmptyRate: RateService {
     func getLatestRate() async throws -> CurrencyConvertor.RateResponse {
-        throw DummyError()
+        await Task.sleep(second: 1)
+        return RateResponse(disclaimer: "", license: "", timestamp: 0, base: "", rates: [:])
     }
 }
-
-struct DummyError: LocalizedError {
-    var errorDescription: String? { "This is Dummy Error" }
+class RateServiceMockFailure: RateService {
+    func getLatestRate() async throws -> CurrencyConvertor.RateResponse {
+        throw CustomError.dummyError
+    }
 }
-
-// testing async/await
-// https://www.avanderlee.com/concurrency/unit-testing-async-await/
 
 // test extension
 // test userDefaults

@@ -90,4 +90,6 @@ struct CustomError: LocalizedError {
     }
     
     var errorDescription: String? { description }
+    
+    static let dummyError: CustomError = .init(description: "This is Dummy Error")
 }
