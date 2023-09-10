@@ -15,7 +15,7 @@ final class CoreDataManager {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ProjectSoul")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_/*storeDescription*/, error) in
             if let error = error as NSError? {
                 /*
                  Typical reasons for an error here include:

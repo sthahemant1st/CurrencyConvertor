@@ -9,8 +9,9 @@ import Foundation
 
 struct RateServiceNetwork: RateService {
     static let shared: RateServiceNetwork = .init()
-    private init() {}
     
+    private init() { }
+
     private var networkCaller = NetworkCaller.shared
     
     // MARK: EndPoints

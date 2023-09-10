@@ -201,7 +201,7 @@
 		41AC05B52AA8D68700BA6C8A /* CurrencyConvertorTests */ = {
 			isa = PBXGroup;
 			children = (
-				DD664A232AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift */,
+				DD664A2A2AADBDD00079ACF4 /* ViewModel */,
 			);
 			path = CurrencyConvertorTests;
 			sourceTree = "<group>";
@@ -397,6 +397,14 @@
 				DD664A282AAD93C00079ACF4 /* ViewDidLoadModifier.swift */,
 			);
 			path = Modifier;
+			sourceTree = "<group>";
+		};
+		DD664A2A2AADBDD00079ACF4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DD664A232AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
