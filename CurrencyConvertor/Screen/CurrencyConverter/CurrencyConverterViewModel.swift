@@ -16,7 +16,14 @@ class CurrencyConverterViewModel: BaseViewModel {
     private var cancellables: Set<AnyCancellable> = .init()
     
     @Published var amount = "100"
-    @Published var selectedCurrency = ""
+    @Published var selectedCurrency = "" {
+        didSet {
+            if oldValue != selectedCurrency {
+                self.calculateRates()
+                // selectedCurrency can be saved in UserDefaults
+            }
+        }
+    }
     @Published var calculatedRates: [CalculatedRate] = []
     
     @Published var amountErrorMsg: String?
@@ -26,7 +33,7 @@ class CurrencyConverterViewModel: BaseViewModel {
     ) {
         self.rateService = rateService
         super.init()
-        selectedCurrency = "USD" // selectedCurrency can be saved in UserDefaults
+        
         handleAmountChange()
     }
     
@@ -36,7 +43,12 @@ class CurrencyConverterViewModel: BaseViewModel {
         do {
             let response = try await rateService.getLatestRate()
             rates = response.rates
-            calculateRates()
+            
+            guard !rates.isEmpty else {
+                throw CustomError(description: "rates is empty")
+            }
+            selectedCurrency = rates.first(where: { $0.key == "USD"})?.key
+            ?? rates.randomElement()!.key
         } catch {
             self.error = error
         }
@@ -45,6 +57,8 @@ class CurrencyConverterViewModel: BaseViewModel {
     
     // should be called in amount change, selectedCountry change and rateFetch
     private func calculateRates() {
+        guard !selectedCurrency.isEmpty else { return }
+        
         do {
             calculatedRates = try rates.toCalculatedRates(
                 selectedCurrency: selectedCurrency,
@@ -60,10 +74,20 @@ class CurrencyConverterViewModel: BaseViewModel {
         $amount
             .dropFirst()
             .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .removeDuplicates()
             .sink { amount in
                 self.amountErrorMsg = amount.isEmpty ? "Amount field is empty." : nil
                 self.calculateRates()
             }
             .store(in: &cancellables)
     }
+}
+
+struct CustomError: LocalizedError {
+    let description: String
+    init(description: String) {
+        self.description = description
+    }
+    
+    var errorDescription: String? { description }
 }

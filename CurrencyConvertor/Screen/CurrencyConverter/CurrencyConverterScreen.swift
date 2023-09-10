@@ -41,12 +41,10 @@ struct CurrencyConverterScreen: View {
         }
         .navigationTitle("Currency Converter")
         .navigationBarTitleDisplayMode(.inline)
-        .task {
-            await viewModel.getRates()
-        }
+        .onViewDidLoad(perform: getRates)
     }
     
-    private func onErrorRetry() {
+    private func getRates() {
         Task {
             await viewModel.getRates()
         }
@@ -110,7 +108,7 @@ private extension CurrencyConverterScreen {
         if let error = viewModel.error {
             ErrorRetryView(
                 description: error.localizedDescription,
-                action: onErrorRetry
+                action: getRates
             )
             .background(Color.white)
         }

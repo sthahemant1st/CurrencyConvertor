@@ -50,6 +50,7 @@
 		DD0E02C82AAB66EB008F3BC1 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E02C72AAB66EB008F3BC1 /* AppColor.swift */; };
 		DD664A242AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A232AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift */; };
 		DD664A262AAD87900079ACF4 /* Task+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A252AAD87900079ACF4 /* Task+Extension.swift */; };
+		DD664A292AAD93C00079ACF4 /* ViewDidLoadModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A282AAD93C00079ACF4 /* ViewDidLoadModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		DD0E02C72AAB66EB008F3BC1 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		DD664A232AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewModelTest.swift; sourceTree = "<group>"; };
 		DD664A252AAD87900079ACF4 /* Task+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extension.swift"; sourceTree = "<group>"; };
+		DD664A282AAD93C00079ACF4 /* ViewDidLoadModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDidLoadModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +263,7 @@
 				41AC05DF2AA8E0CA00BA6C8A /* TypeAlise.swift */,
 				DD0E02B02AAB38D8008F3BC1 /* Base */,
 				41AC05E02AA8E0CA00BA6C8A /* Extensions */,
+				DD664A272AAD93A20079ACF4 /* Modifier */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -386,6 +389,14 @@
 				DD0E02AE2AAB38C3008F3BC1 /* String+Extension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		DD664A272AAD93A20079ACF4 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				DD664A282AAD93C00079ACF4 /* ViewDidLoadModifier.swift */,
+			);
+			path = Modifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -554,6 +565,7 @@
 				DD0E02942AAB131D008F3BC1 /* RateResponse.swift in Sources */,
 				41AC05E82AA8E0CA00BA6C8A /* Data+Extension.swift in Sources */,
 				4153F8422AA8E708002764A4 /* CurrencyConverterViewModel.swift in Sources */,
+				DD664A292AAD93C00079ACF4 /* ViewDidLoadModifier.swift in Sources */,
 				DD0E02C62AAB65BB008F3BC1 /* View+Extension.swift in Sources */,
 				DD0E029A2AAB140A008F3BC1 /* RateServiceNetwork.swift in Sources */,
 				DD0E02AD2AAB38A4008F3BC1 /* Double+Extension.swift in Sources */,

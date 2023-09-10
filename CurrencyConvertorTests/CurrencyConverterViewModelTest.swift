@@ -30,7 +30,7 @@ final class CurrencyConverterViewModelTest: XCTestCase {
         // then
         XCTAssertTrue(viewModel.rates.isEmpty)
         XCTAssertEqual(viewModel.amount, "100")
-        XCTAssertEqual(viewModel.selectedCurrency, "USD")
+        XCTAssertEqual(viewModel.selectedCurrency, "")
         XCTAssertTrue(viewModel.calculatedRates.isEmpty)
         XCTAssertNil(viewModel.amountErrorMsg)
         XCTAssertNil(viewModel.error)
@@ -81,6 +81,16 @@ final class CurrencyConverterViewModelTest: XCTestCase {
         XCTAssertGreaterThan(viewModel.rates.count, 0)
     }
     
+    func test_getRates_whenSuccess_selectedCurrencyShouldBeSetToOneOfRatesCountry() async {
+        _ = await viewModel.getRates()
+        XCTAssertTrue(
+            viewModel
+                .rates.contains(where: {
+                    $0.key == viewModel.selectedCurrency
+                })
+        )
+    }
+    
     func test_getRates_whenSuccess_calculatedRatesIsSetAndIsSorted() async {
         XCTAssertTrue(viewModel.calculatedRates.isEmpty)
         _ = await viewModel.getRates()
@@ -92,6 +102,57 @@ final class CurrencyConverterViewModelTest: XCTestCase {
         viewModel = CurrencyConverterViewModel(rateService: RateServiceMockFailure())
         _ = await viewModel.getRates()
         XCTAssertNotNil(viewModel.error)
+    }
+    
+    func test_onChangeOfSelectedCurrency_shouldReCalculateRates() async {
+        // Given
+        _ = await viewModel.getRates()
+        // when
+        for _ in 0..<5 {
+            let previousSelectedCurrency = viewModel.selectedCurrency
+            let previousCalculatedRates = viewModel.calculatedRates
+            
+            viewModel.selectedCurrency = viewModel.calculatedRates.randomElement()!.county
+            
+
+            if previousSelectedCurrency != viewModel.selectedCurrency {
+                XCTAssertNotEqual(
+                    previousCalculatedRates,
+                    viewModel.calculatedRates,
+                    "previous calculatedRates and present calculatedRates should not be equal"
+                )
+            } else {
+                XCTAssertEqual(
+                    previousCalculatedRates,
+                    viewModel.calculatedRates,
+                    "previous calculatedRates and present calculatedRates should be equal"
+                )
+            }
+        }
+    }
+    
+    func test_onChangeOfAmount_shouldReCalculateRates() async {
+        _ = await viewModel.getRates()
+        
+        let previousAmount = viewModel.amount
+        let previousCalculatedRates = viewModel.calculatedRates
+        
+        viewModel.amount = Int.random(in: 1...1000).description
+        await Task.sleep(second: 1)
+        if previousAmount != viewModel.amount {
+            XCTAssertNotEqual(
+                previousCalculatedRates,
+                viewModel.calculatedRates,
+                "previous calculatedRates and present calculatedRates should not be equal"
+            )
+        } else {
+            XCTAssertEqual(
+                previousCalculatedRates,
+                viewModel.calculatedRates,
+                "previous calculatedRates and present calculatedRates should be equal"
+            )
+        }
+        
     }
 }
 
