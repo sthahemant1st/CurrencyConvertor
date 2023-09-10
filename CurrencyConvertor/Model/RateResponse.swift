@@ -12,5 +12,31 @@ struct RateResponse: Codable {
     let license: String
     var timestamp: Double
     let base: String
-    let rates: [String: Double]
+    let rates: Rates
+}
+
+typealias Rates = [String: Double]
+
+extension Rates {
+    func toCalculatedRates(
+        selectedCurrency: String,
+        enteredAmount: Double
+    ) throws -> [CalculatedRate] {
+        let oneUSDToSelectedCountry = self[selectedCurrency]
+        guard let oneUSDToSelectedCountry else {
+            throw RateCalculationError.currencyNotFound
+        }
+        let selectedCurrencyAmountToUSD = 1 / oneUSDToSelectedCountry * enteredAmount
+        
+        return self.map({ country, rate in
+            return CalculatedRate(
+                county: country,
+                amount: rate * selectedCurrencyAmountToUSD
+            )
+        })
+    }
+    
+    enum RateCalculationError: Error {
+        case currencyNotFound
+    }
 }

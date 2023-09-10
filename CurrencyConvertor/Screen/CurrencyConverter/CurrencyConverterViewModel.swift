@@ -27,11 +27,11 @@ class CurrencyConverterViewModel: BaseViewModel {
         self.rateService = rateService
         super.init()
         selectedCurrency = "USD" // selectedCurrency can be saved in UserDefaults
-        // add validation
         handleAmountChange()
     }
     
     func getRates() async {
+        error = nil
         isRefreshing = true
         do {
             let response = try await rateService.getLatestRate()
@@ -45,16 +45,15 @@ class CurrencyConverterViewModel: BaseViewModel {
     
     // should be called in amount change, selectedCountry change and rateFetch
     private func calculateRates() {
-        let oneUSDToSelectedCountry = rates[selectedCurrency]
-        guard let oneUSDToSelectedCountry else {
-            fatalError("This condition should never occur")
+        do {
+            calculatedRates = try rates.toCalculatedRates(
+                selectedCurrency: selectedCurrency,
+                enteredAmount: amount.doubleValue
+            )
+            .sorted()
+        } catch {
+            fatalError("Should never happen as we have selected currency form rates")
         }
-        let selectedCurrencyAmountToUSD = 1 / oneUSDToSelectedCountry * amount.doubleValue
-        
-        calculatedRates = rates.map({ country, rate in
-            return CalculatedRate(county: country, amount: rate * selectedCurrencyAmountToUSD)
-        })
-        .sorted()
     }
     
     private func handleAmountChange() {

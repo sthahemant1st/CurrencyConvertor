@@ -49,6 +49,7 @@
 		DD0E02C62AAB65BB008F3BC1 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E02C52AAB65BB008F3BC1 /* View+Extension.swift */; };
 		DD0E02C82AAB66EB008F3BC1 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0E02C72AAB66EB008F3BC1 /* AppColor.swift */; };
 		DD664A242AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A232AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift */; };
+		DD664A262AAD87900079ACF4 /* Task+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A252AAD87900079ACF4 /* Task+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		DD0E02C52AAB65BB008F3BC1 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		DD0E02C72AAB66EB008F3BC1 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		DD664A232AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterViewModelTest.swift; sourceTree = "<group>"; };
+		DD664A252AAD87900079ACF4 /* Task+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +270,7 @@
 			children = (
 				DD0E02C42AAB65A2008F3BC1 /* Foundation */,
 				DD0E02C52AAB65BB008F3BC1 /* View+Extension.swift */,
+				DD664A252AAD87900079ACF4 /* Task+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				41AC05DD2AA8DFCA00BA6C8A /* HTTPMethod.swift in Sources */,
 				41AC05E72AA8E0CA00BA6C8A /* Encodable+Extension.swift in Sources */,
 				DD0E02A02AAB1FFD008F3BC1 /* CalculatedRate.swift in Sources */,
+				DD664A262AAD87900079ACF4 /* Task+Extension.swift in Sources */,
 				41AC05DC2AA8DFCA00BA6C8A /* Endpoint.swift in Sources */,
 				DD0E02C32AAB64AD008F3BC1 /* ErrorRetryView.swift in Sources */,
 				DD0E02AF2AAB38C3008F3BC1 /* String+Extension.swift in Sources */,
