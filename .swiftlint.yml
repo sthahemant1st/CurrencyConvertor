@@ -2,6 +2,7 @@ excluded:
     - Pods
 
 disabled_rules:
+    - unneeded_synthesized_initializer
     - void_return
     - function_body_length
     - type_body_length
