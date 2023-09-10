@@ -17,17 +17,22 @@ struct CurrencyConverterScreen: View {
     var body: some View {
         ZStack {
             VStack(alignment: .leading, spacing: 16) {
-                amountField
-                    .padding(.horizontal, 16)
-                    .padding(.top, 16)
-                
-                countryPicker
-                    .padding(.horizontal, 16)
+                VStack(alignment: .leading, spacing: 16) {
+                    amountField
+                        
+                    countryPicker
+                    
+                    Text("Converted Amount:")
+                        .fontWeight(.bold)
+                        .foregroundStyle(.primary)
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
                 
                 if let amountErrorMsg = viewModel.amountErrorMsg {
                     Text(amountErrorMsg)
                         .foregroundStyle(.red)
-                        .padding(.horizontal, 16)
+                        
                 } else {
                     calculatedRatesView
                 }
@@ -56,15 +61,16 @@ private extension CurrencyConverterScreen {
     var amountField: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Enter amount to convert:")
-                .font(.callout)
-            TextField("Amount", text: $viewModel.amount)
+                .font(.footnote)
+            TextField("Enter amount to convert:", text: $viewModel.amount)
                 .textFieldStyle(.roundedBorder)
         }
+        .foregroundStyle(.appText)
     }
     
     var countryPicker: some View {
         Picker(
-            "Select Currency",
+            "Select Currency:",
             selection: $viewModel.selectedCurrency
         ) {
             ForEach(viewModel.rates.keys.sorted(), id: \.self) { currency in
@@ -72,11 +78,13 @@ private extension CurrencyConverterScreen {
             }
         }
         .pickerStyle(.navigationLink)
+        .tint(.appPrimary)
     }
     
     var calculatedRatesView: some View {
         ScrollView {
-            LazyVStack(spacing: 8) {
+            LazyVStack(alignment: .leading, spacing: 8) {
+                
                 ForEach(viewModel.calculatedRates) { item in
                     HStack {
                         Text("\(item.county) ")
@@ -88,6 +96,7 @@ private extension CurrencyConverterScreen {
                 }
             }
             .padding(.horizontal, 16)
+            .foregroundStyle(.appText)
         }
     }
     
