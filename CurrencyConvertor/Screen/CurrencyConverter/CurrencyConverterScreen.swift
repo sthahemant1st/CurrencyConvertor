@@ -81,7 +81,7 @@ private extension CurrencyConverterScreen {
             LazyVStack(spacing: 8) {
                 ForEach(viewModel.calculatedRates) { item in
                     HStack {
-                        Text(item.county + " ")
+                        Text("\(item.county) ")
                         Text(item.amount.roundedString())
                         Spacer()
                     }

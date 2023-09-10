@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>CurrencyConvertorTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>SWXMLHashPlayground (Playground) 1.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -29,6 +34,24 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>41AC05A12AA8D68400BA6C8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41AC05B12AA8D68700BA6C8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>41AC05BB2AA8D68700BA6C8A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
