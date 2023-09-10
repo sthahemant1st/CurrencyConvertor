@@ -131,7 +131,7 @@ final class CurrencyConverterViewModelTest: XCTestCase {
         }
     }
     
-    func test_onChangeOfAmount_shouldReCalculateRates() async {
+    func test_onChangeOfValidAmount_shouldReCalculateRates_andAmountShouldBeNil() async {
         _ = await viewModel.getRates()
         
         let previousAmount = viewModel.amount
@@ -139,6 +139,7 @@ final class CurrencyConverterViewModelTest: XCTestCase {
         
         viewModel.amount = Int.random(in: 1...1000).description
         await Task.sleep(second: 1)
+        XCTAssertNil(viewModel.amountErrorMsg)
         if previousAmount != viewModel.amount {
             XCTAssertNotEqual(
                 previousCalculatedRates,
@@ -152,7 +153,15 @@ final class CurrencyConverterViewModelTest: XCTestCase {
                 "previous calculatedRates and present calculatedRates should be equal"
             )
         }
+    }
+    
+    func test_onChangeOfAmountToEmpty_amountErrorMsgShouldBeSet() async {
+        _ = await viewModel.getRates()
         
+        viewModel.amount = Int.random(in: 1...1000).description
+        viewModel.amount = ""
+        await Task.sleep(second: 1)
+        XCTAssertNotNil(viewModel.amountErrorMsg)
     }
 }
 

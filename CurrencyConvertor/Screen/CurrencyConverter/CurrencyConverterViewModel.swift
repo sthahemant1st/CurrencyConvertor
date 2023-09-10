@@ -73,7 +73,7 @@ class CurrencyConverterViewModel: BaseViewModel {
     private func handleAmountChange() {
         $amount
             .dropFirst()
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
             .removeDuplicates()
             .sink { amount in
                 self.amountErrorMsg = amount.isEmpty ? "Amount field is empty." : nil
