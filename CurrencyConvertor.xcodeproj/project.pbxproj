@@ -53,6 +53,7 @@
 		DD664A312AAEC6320079ACF4 /* PersistenceHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A302AAEC6320079ACF4 /* PersistenceHelperTest.swift */; };
 		DD664A352AAEE1080079ACF4 /* JSONHelperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD664A342AAEE1080079ACF4 /* JSONHelperTest.swift */; };
 		DD664A382AAEE13D0079ACF4 /* RateResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = DD664A372AAEE13D0079ACF4 /* RateResponse.json */; };
+		DD765C372AAEF2D9000A8940 /* RatesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD765C362AAEF2D9000A8940 /* RatesTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		DD664A302AAEC6320079ACF4 /* PersistenceHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelperTest.swift; sourceTree = "<group>"; };
 		DD664A342AAEE1080079ACF4 /* JSONHelperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelperTest.swift; sourceTree = "<group>"; };
 		DD664A372AAEE13D0079ACF4 /* RateResponse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = RateResponse.json; path = "CurrencyConvertor/Preview Content/JSON/RateResponse.json"; sourceTree = SOURCE_ROOT; };
+		DD765C362AAEF2D9000A8940 /* RatesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +210,7 @@
 				DD664A302AAEC6320079ACF4 /* PersistenceHelperTest.swift */,
 				DD664A362AAEE11C0079ACF4 /* Resources */,
 				DD664A2A2AADBDD00079ACF4 /* ViewModel */,
+				DD765C362AAEF2D9000A8940 /* RatesTest.swift */,
 			);
 			path = CurrencyConvertorTests;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD664A352AAEE1080079ACF4 /* JSONHelperTest.swift in Sources */,
+				DD765C372AAEF2D9000A8940 /* RatesTest.swift in Sources */,
 				DD664A242AAC27450079ACF4 /* CurrencyConverterViewModelTest.swift in Sources */,
 				DD664A312AAEC6320079ACF4 /* PersistenceHelperTest.swift in Sources */,
 			);
