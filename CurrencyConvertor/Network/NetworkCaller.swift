@@ -7,7 +7,6 @@
 
 import Foundation
 
-// TODO: test me
 class NetworkCaller {
     private var session: URLSession
 
@@ -69,7 +68,7 @@ extension NetworkCaller {
         data: Data,
         response: URLResponse,
         returnType: T.Type
-    )  async throws -> T where T: Decodable {
+    ) async throws -> T where T: Decodable {
         guard let httpResponse = response as? HTTPURLResponse else {
             throw APIError.unknown
         }
@@ -83,15 +82,22 @@ extension NetworkCaller {
                 throw APIError.decodingError(error)
             }
         } else {
+            let errorResponse = try? data.decode(ErrorModel.self)
             switch httpResponse.statusCode {
             case 400:
-                throw APIError.notFound("Some message form server")
+                throw APIError.notFound(errorResponse?.description)
             case 401:
-                throw APIError.sessionExpired
+                throw APIError.missingAppId(errorResponse?.description)
+            case 403:
+                throw APIError.accessRestricted(errorResponse?.description)
             case 500:
                 throw APIError.internalServerError
             default:
-                throw APIError.unknown
+                if let errorResponse {
+                    throw APIError.other(errorResponse.description)
+                } else {
+                    throw APIError.unknown
+                }
             }
         }
     }

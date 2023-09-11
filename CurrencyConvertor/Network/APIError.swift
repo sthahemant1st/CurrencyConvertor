@@ -8,19 +8,22 @@
 import Foundation
 
 enum APIError: LocalizedError {
+    case accessRestricted(String?)
     case decodingError(Error)
     case encodingError(Error?)
     case invalidRequest(String)
     case internalServerError
     case notFound(String?) // bad request
     case transportError // noInternet
-    case unauthorized
-    case sessionExpired
+    case missingAppId(String?) // missingAppId
     case unknown
+    case other(String)
     case validationError(Error)
 
     var errorDescription: String? {
         switch self {
+        case .accessRestricted(let description):
+            return "Access Restricted: \(description ?? "-")"
         case .decodingError(let error):
             return "Decoding Error \(error.localizedDescription)"
         case .encodingError(let error):
@@ -33,12 +36,12 @@ enum APIError: LocalizedError {
             return message
         case .transportError:
             return "No internet connection"
-        case .unauthorized:
-            return "Not Authorized"
-        case .sessionExpired:
-            return "Session Expired"
+        case .missingAppId(let description):
+            return "Unauthorized: \(description ?? "-")"
         case .unknown:
-            return "Unknown Error"
+            return "Unknown Error: "
+        case .other(let description):
+            return description
         case .validationError:
             return "Validation Error"
         }
