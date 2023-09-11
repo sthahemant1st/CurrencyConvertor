@@ -65,7 +65,7 @@ private extension CurrencyConverterScreen {
             TextField("Enter amount to convert:", text: $viewModel.amount)
                 .textFieldStyle(.roundedBorder)
         }
-        .foregroundStyle(.appText)
+        .foregroundStyle(Color.appText)
     }
     
     var countryPicker: some View {
@@ -96,7 +96,7 @@ private extension CurrencyConverterScreen {
                 }
             }
             .padding(.horizontal, 16)
-            .foregroundStyle(.appText)
+            .foregroundStyle(Color.appText)
         }
     }
     

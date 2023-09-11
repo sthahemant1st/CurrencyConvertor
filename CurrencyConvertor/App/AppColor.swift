@@ -8,8 +8,8 @@
 import SwiftUI
 
 // this is not needed in xCode beta
-//extension Color {
-//    static let appPrimary = Color("AppPrimary")
-//    static let appSecondary = Color("AppSecondary")
-//    static let appText = Color("AppText")
-//}
+extension Color {
+    static let appPrimary = Color("AppPrimary")
+    static let appSecondary = Color("AppSecondary")
+    static let appText = Color("AppText")
+}
