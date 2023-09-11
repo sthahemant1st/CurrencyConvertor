@@ -49,7 +49,7 @@ extension EndpointProtocol {
         }
         
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: HeaderKeys.contentType.rawValue)
-
+        request.setValue("Authorization: Token \(AppConfig.appID)", forHTTPHeaderField: HeaderKeys.authorization.rawValue)
         return request
     }
     
@@ -58,10 +58,10 @@ extension EndpointProtocol {
         component.scheme = "https"
         component.host = AppConfig.baseURL
         component.path = path
-        var appIDIncludedQueryItem = queryItems
-        appIDIncludedQueryItem.append(URLQueryItem(name: "app_id", value: AppConfig.appID))
-        // TODO: Authorization: Token YOUR_APP_ID
-        component.percentEncodedQueryItems = appIDIncludedQueryItem
+//        var appIDIncludedQueryItem = queryItems
+//        appIDIncludedQueryItem.append(URLQueryItem(name: "app_id", value: AppConfig.appID))
+//        component.percentEncodedQueryItems = appIDIncludedQueryItem
+        component.percentEncodedQueryItems = queryItems
         return component
     }
 }
