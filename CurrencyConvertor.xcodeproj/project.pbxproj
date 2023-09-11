@@ -208,9 +208,9 @@
 			children = (
 				DD664A342AAEE1080079ACF4 /* JSONHelperTest.swift */,
 				DD664A302AAEC6320079ACF4 /* PersistenceHelperTest.swift */,
-				DD664A362AAEE11C0079ACF4 /* Resources */,
+				DD4187072AAF159D003F78C1 /* Model */,
 				DD664A2A2AADBDD00079ACF4 /* ViewModel */,
-				DD765C362AAEF2D9000A8940 /* RatesTest.swift */,
+				DD664A362AAEE11C0079ACF4 /* Resources */,
 			);
 			path = CurrencyConvertorTests;
 			sourceTree = "<group>";
@@ -390,6 +390,14 @@
 				DD0E02AE2AAB38C3008F3BC1 /* String+Extension.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		DD4187072AAF159D003F78C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD765C362AAEF2D9000A8940 /* RatesTest.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		DD664A272AAD93A20079ACF4 /* Modifier */ = {
