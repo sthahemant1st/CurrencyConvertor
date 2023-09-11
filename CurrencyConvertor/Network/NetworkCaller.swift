@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: test me
 class NetworkCaller {
     private var session: URLSession
 
@@ -82,7 +83,6 @@ extension NetworkCaller {
                 throw APIError.decodingError(error)
             }
         } else {
-
             switch httpResponse.statusCode {
             case 400:
                 throw APIError.notFound("Some message form server")

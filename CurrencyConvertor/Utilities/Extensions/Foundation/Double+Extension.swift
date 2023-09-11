@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 extension Double {
     func roundedString(_ places: Int = 3) -> String {
         let numberFormatter = NumberFormatter()

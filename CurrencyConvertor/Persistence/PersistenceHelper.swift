@@ -23,9 +23,7 @@ struct PersistenceHelper {
             .appendingPathComponent(rateResponseFileName)
         
         let savedData = try? Data(contentsOf: path)
-        guard let savedData else { return nil }
-        
-        return try? savedData.decode(RateResponse.self)
+        return try? savedData?.decode(RateResponse.self)
     }
     
     static private func getDocumentsDirectory() -> URL {

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: test me
 struct RateServiceApp: RateService {
     func getLatestRate() async throws -> RateResponse {
         let savedRateResponse = PersistenceHelper.getRateResponse()
